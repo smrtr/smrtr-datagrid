@@ -60,6 +60,12 @@ class DataGrid implements \Serializable
      * @var array 
      */
     protected $data = array();
+
+    /**
+     * Restrict data values to scalar types? Turned on by default.
+     * @var bool
+     */
+    protected $scalarValues = true;
     
     /**
      * A map of operators to matching-functions
@@ -141,7 +147,7 @@ class DataGrid implements \Serializable
      */
     
     /**
-     *@api
+     * @api
      * @return string
      */
     public function serialize()
@@ -151,7 +157,8 @@ class DataGrid implements \Serializable
             'rowKeys' => $this->rowKeys,
             'columnKeys' => $this->columnKeys,
             'rows' => $this->rows,
-            'columns' => $this->columns
+            'columns' => $this->columns,
+            'scalarValues' => $this->scalarValues
         );
         return serialize($arr);
     }
@@ -159,12 +166,12 @@ class DataGrid implements \Serializable
     /**
      * @api
      * @param string $serialized
-     * @return \Smrtr_DataGrid
+     * @return DataGrid
      */
     public function unserialize( $serialized )
     {
         $arr = unserialize($serialized);
-        foreach (array('data', 'rowKeys', 'columnKeys', 'rows', 'columns') as $key)
+        foreach (array('data', 'rowKeys', 'columnKeys', 'rows', 'columns', 'scalarValues') as $key)
             $this->$key = $arr[$key];
         $this->ID = self::$IDcounter++;
         self::$registry[$this->ID] = $this;
@@ -1288,12 +1295,16 @@ class DataGrid implements \Serializable
      * 
      * @api
      * @param int|string $keyOrLabel
+     * @param boolean $associative Optional
      * @return array
      * @uses DataGrid::getKey()
      */
-    public function getRow( $keyOrLabel )
+    public function getRow( $keyOrLabel, $associative=false )
     {
         $key = $this->getKey('row', $keyOrLabel);
+        if ($associative) {
+            return array_combine($this->getColumnLabels(), $this->data[$key]);
+        }
         return $this->data[$key];
     }
     
@@ -1822,15 +1833,19 @@ class DataGrid implements \Serializable
      * 
      * @api
      * @param int|string $keyOrLabel
+     * @param boolean $associative Optional
      * @return array
      * @uses DataGrid::getKey()
      */
-    public function getColumn( $keyOrLabel )
+    public function getColumn( $keyOrLabel, $associative=false )
     {
         $key = $this->getKey('column', $keyOrLabel);
         $column = array();
         foreach ($this->data as $i => $row)
             $column[$i] = $row[$key];
+        if ($associative) {
+            return array_combine($this->getRowLabels(), $column);
+        }
         return $column;
     }
     
@@ -2259,6 +2274,7 @@ class DataGrid implements \Serializable
      * ================================================================
      * The Grid (* = API)
      * ================================================================
+     * scalarValuesOnly*
      * setValue*
      * getValue*
      * hasValue*
@@ -2276,14 +2292,29 @@ class DataGrid implements \Serializable
      * getByID
      * ________________________________________________________________
      */
-    
+
     /**
-     * Update value at a particular point
+     * By default the DataGrid only restricts values on the grid to scalars only.
+     *
+     * Call this method to turn this restriction on or off.
+     *
+     * @param boolean $scalarValuesOnly Set to false to turn off the restriction, set to true to turn it back on.
+     *
+     * @return $this
+     */
+    public function scalarValuesOnly($scalarValuesOnly)
+    {
+        $this->scalarValues = (boolean) $scalarValuesOnly;
+        return $this;
+    }
+
+    /**
+     * Update value at a particular point. Use
      * 
      * @api
      * @param int|string $rowKeyOrLabel
      * @param int|string $columnKeyOrLabel
-     * @param scalar|null $value
+     * @param mixed $value
      * @return \DataGrid $this
      * @uses DataGrid::getKey()
      * @uses DataGrid::_normalizePoint() 
@@ -2527,8 +2558,7 @@ class DataGrid implements \Serializable
             {
                 if ($matchLabels && !in_array($key, $this->columnKeys))
                     continue;
-                $vector[] = (is_scalar($val) || is_null($val))
-                    ? $val : null;
+                $vector[] = $this->_normalizePoint($val);
                 $j++;
             }
             $vectors[] = $vector;
@@ -2550,8 +2580,7 @@ class DataGrid implements \Serializable
         $vector = array(); $count = 0;
         foreach ($ntuple as $val)
         {
-            $vector[] = is_scalar($val)
-                ? $val : null;
+            $vector[] = $this->_normalizePoint($val);
             $count++;
         }
         if (is_int($size) && $size > $count)
@@ -2581,8 +2610,10 @@ class DataGrid implements \Serializable
      */
     protected function _normalizePoint( $point )
     {
-        return (is_scalar($point) || is_null($point))
-            ? $point : null;
+        if ($this->scalarValues) {
+            return (is_scalar($point) or is_null($point)) ? $point : null;
+        }
+        return $point;
     }
     
     /**

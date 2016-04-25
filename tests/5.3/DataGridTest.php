@@ -225,10 +225,7 @@ class Smrtr_Test_DataGridTest extends Smrtr_DataGrid_ControllerTestCase
         $this->assertSame($res1, $res2, $res3);
         $this->assertTrue($this->isValid($grid));
     }
-    
-    /**
-     * PHP 5.4 Test 
-     */
+
     public function testSetPointsWithLabels()
     {
         $grid = new Smrtr\DataGrid($this->labelledData, true, true);
@@ -247,6 +244,24 @@ class Smrtr_Test_DataGridTest extends Smrtr_DataGrid_ControllerTestCase
         
         $this->assertSame($val, $res1, $res2, $res3, $res4);
         $this->assertTrue($this->isValid($grid));
+    }
+
+    public function testGetColumnAssociative()
+    {
+        $grid = new Smrtr\DataGrid($this->labelledData, true, true);
+        $this->assertSame(
+            array('col0'=>'1.0', 'col1'=>'1.1', 'col2'=>'1.2'),
+            $grid->getRow(1, true)
+        );
+    }
+
+    public function testGetRowAssociative()
+    {
+        $grid = new Smrtr\DataGrid($this->labelledData, true, true);
+        $this->assertSame(
+            array('row0'=>'0.1', 'row1'=>'1.1', 'row2'=>'2.1'),
+            $grid->getColumn(1, true)
+        );
     }
     
     public function testAppendColumns()
@@ -850,9 +865,24 @@ class Smrtr_Test_DataGridTest extends Smrtr_DataGrid_ControllerTestCase
         }
     }
     
-    public function testServeCSV()
+    public function testScalarValuesOnlyByDefault()
     {
-        
+        $grid = new Smrtr\DataGrid($this->labelledData, true, true);
+        $grid->setValue(1, 1, "foobarbodiddly");
+        $this->assertSame("foobarbodiddly", $grid->getValue(1, 1));
+        // try to set non-scalar, it gets cast to null
+        $grid->setValue(1, 1, ['hey']);
+        $this->assertSame(null, $grid->getValue(1, 1));
     }
-    
+
+    public function testNonScalarValues()
+    {
+        $grid = new Smrtr\DataGrid($this->labelledData, true, true);
+        $grid->setValue(1, 1, "foobarbodiddly");
+        $this->assertSame("foobarbodiddly", $grid->getValue(1, 1));
+        // try to set non-scalar, it works this time
+        $grid->scalarValuesOnly(false);
+        $grid->setValue(1, 1, ['hey']);
+        $this->assertSame(['hey'], $grid->getValue(1, 1));
+    }
 }
