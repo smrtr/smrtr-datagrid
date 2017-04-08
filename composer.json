@@ -10,7 +10,7 @@
   "homepage": "https://github.com/smrtr/smrtr-datagrid",
   "license": "MIT",
   "autoload":{
-    "classmap": ["src/DataGrid.php", "src/DataGridVector.php"]
+    "classmap": ["src/DataGrid.php", "src/DataGridException.php", "src/DataGridVector.php"]
   },
   "authors": [
     {

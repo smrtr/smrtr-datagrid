@@ -1,10 +1,12 @@
 <?php
-/**
- * @author Joe Green
- * DataGridTest_54
- * Additional tests to run in php environments from 5.4 up.
- */
 
+/**
+ * Smrtr_Test_DataGridTest_54
+ *
+ * Additional tests to run in php environments from 5.4 up.
+ *
+ * @author Joe Green
+ */
 class Smrtr_Test_DataGridTest_54 extends Smrtr_DataGrid_ControllerTestCase
 {
     public $simpleData = array(
@@ -24,24 +26,25 @@ class Smrtr_Test_DataGridTest_54 extends Smrtr_DataGrid_ControllerTestCase
     /**
      * Does some sanity checks on the Smrtr\DataGrid object and returns a boolean
      */
-    protected function isValid( Smrtr\DataGrid $grid )
+    protected function isValid(Smrtr\DataGrid $grid)
     {
         $info = $grid->info();
         $data = $grid->getArray();
-        $rows = 0; $columns = 0;
+        $rows = 0;
+        $columns = 0;
         foreach ($data as $row) {
             $rows++;
             $count = count($row);
             $columns = max($columns, $count);
         }
         return (
-            $rows == $info['rowCount'] && $columns == $info['columnCount'] 
+            $rows == $info['rowCount'] && $columns == $info['columnCount']
             && $rows == count($info['rowKeys']) && $columns == count($info['columnKeys'])
         );
     }
     
     /**
-     * PHP 5.4 Test 
+     * PHP 5.4 Test
      */
     public function testGetPoints()
     {
@@ -57,7 +60,7 @@ class Smrtr_Test_DataGridTest_54 extends Smrtr_DataGrid_ControllerTestCase
     }
     
     /**
-     * PHP 5.4 Test 
+     * PHP 5.4 Test
      */
     public function testGetPointsWithLabels()
     {
@@ -66,12 +69,14 @@ class Smrtr_Test_DataGridTest_54 extends Smrtr_DataGrid_ControllerTestCase
         $point1 = $grid->column('col1')['row1'];
         $point2 = $grid->row('row1')['col1'];
         $point3 = $grid->getValue('row1', 'col1');
-        $this->assertSame($val, $point1, $point2, $point3);
+        $this->assertSame($val, $point1);
+        $this->assertSame($point1, $point2);
+        $this->assertSame($point2, $point3);
         $this->assertTrue($this->isValid($grid));
     }
     
     /**
-     * PHP 5.4 Test 
+     * PHP 5.4 Test
      */
     public function testSetPoints()
     {
@@ -87,7 +92,7 @@ class Smrtr_Test_DataGridTest_54 extends Smrtr_DataGrid_ControllerTestCase
     }
     
     /**
-     * PHP 5.4 Test 
+     * PHP 5.4 Test
      */
     public function testSetPointsWithLabels()
     {
@@ -102,9 +107,11 @@ class Smrtr_Test_DataGridTest_54 extends Smrtr_DataGrid_ControllerTestCase
         $res1 = $grid->getValue('row2', 'col2');
         $grid->row('row2')['col2'] = $val;
         $res2 = $grid->getValue('row2', 'col2');
-        
-        $this->assertSame($val, $res1, $res2, $res3, $res4);
+
+        $this->assertSame($val, $res1);
+        $this->assertSame($res1, $res2);
+        $this->assertSame($res2, $res3);
+        $this->assertSame($res3, $res4);
         $this->assertTrue($this->isValid($grid));
     }
-    
 }

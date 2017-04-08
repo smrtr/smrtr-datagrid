@@ -1,10 +1,12 @@
 <?php
-/**
- * @author Joe Green
- * DataGridTest
- * These tests apply to all PHP environments from 5.3 up.
- */
 
+/**
+ * Smrtr_Test_DataGridTest
+ *
+ * These tests apply to all PHP environments from 5.3 up.
+ *
+ * @author Joe Green
+ */
 class Smrtr_Test_DataGridTest extends Smrtr_DataGrid_ControllerTestCase
 {
     public $simpleData = array(
@@ -74,18 +76,19 @@ class Smrtr_Test_DataGridTest extends Smrtr_DataGrid_ControllerTestCase
     /**
      * Does some sanity checks on the Smrtr\DataGrid object and returns a boolean
      */
-    protected function isValid( Smrtr\DataGrid $grid )
+    protected function isValid(Smrtr\DataGrid $grid)
     {
         $info = $grid->info();
         $data = $grid->getArray();
-        $rows = 0; $columns = 0;
+        $rows = 0;
+        $columns = 0;
         foreach ($data as $row) {
             $rows++;
             $count = count($row);
             $columns = max($columns, $count);
         }
         return (
-            $rows == $info['rowCount'] && $columns == $info['columnCount'] 
+            $rows == $info['rowCount'] && $columns == $info['columnCount']
             && $rows == count($info['rowKeys']) && $columns == count($info['columnKeys'])
         );
     }
@@ -270,7 +273,7 @@ class Smrtr_Test_DataGridTest extends Smrtr_DataGrid_ControllerTestCase
         $grid->appendColumn($column, 'col3');
         $grid->appendColumn($grid->column(3), 'copy');
         $this->assertSame(
-            $column, 
+            $column,
             $grid->column('col3')->data(), $grid->column(3)->data(),
             $grid->column('copy')->data(), $grid->column(4)->data(),
             $grid->getColumn('col3'), $grid->getColumn(3),
@@ -319,7 +322,7 @@ class Smrtr_Test_DataGridTest extends Smrtr_DataGrid_ControllerTestCase
         $this->assertEquals($grid->getLabel('column', 0), 'copy');
         $this->assertEquals($grid->getLabel('column', 1), 'new');
         $this->assertSame(
-            $column, 
+            $column,
             $grid->column('new')->data(), $grid->column(1)->data(),
             $grid->column('copy')->data(), $grid->column(0)->data(),
             $grid->getColumn('new'), $grid->getColumn(1),
@@ -338,7 +341,7 @@ class Smrtr_Test_DataGridTest extends Smrtr_DataGrid_ControllerTestCase
         $this->assertEquals($grid->getLabel('row', 0), 'copy');
         $this->assertEquals($grid->getLabel('row', 1), 'new');
         $this->assertSame(
-            $row, 
+            $row,
             $grid->row('new')->data(), $grid->row(1)->data(),
             $grid->row('copy')->data(), $grid->row(0)->data(),
             $grid->getRow('new'), $grid->getRow(1),
@@ -419,12 +422,12 @@ class Smrtr_Test_DataGridTest extends Smrtr_DataGrid_ControllerTestCase
         
         $res1 = $grid->getRow('row2');
         $res1_ = $grid->getRow(2);
-        $res2 = $grid->swapRows('row2','row1', false)->getRow('row1');
+        $res2 = $grid->swapRows('row2', 'row1', false)->getRow('row1');
         $res2_ = $grid->getRow(1);
-        $res3 = $grid->swapRows('row0','row1', false)->getRow('row0');
+        $res3 = $grid->swapRows('row0', 'row1', false)->getRow('row0');
         $res3_ = $grid->getRow(0);
         
-        $result = ( $res1 == $res2 && $res2 == $res3 && $res3 == $res3_ && $res3_ == $res2_ && $res2_ == $res1_ );
+        $result = ($res1 == $res2 && $res2 == $res3 && $res3 == $res3_ && $res3_ == $res2_ && $res2_ == $res1_);
         $this->assertTrue($result);
         $this->assertTrue($this->isValid($grid));
     }
@@ -435,12 +438,12 @@ class Smrtr_Test_DataGridTest extends Smrtr_DataGrid_ControllerTestCase
         
         $res1 = $grid->getRow('row2');
         $res1_ = $grid->getRow(2);
-        $res2 = $grid->swapRows('row2','row1')->getRow('row2');
+        $res2 = $grid->swapRows('row2', 'row1')->getRow('row2');
         $res2_ = $grid->getRow(1);
-        $res3 = $grid->swapRows('row0','row2')->getRow('row2');
+        $res3 = $grid->swapRows('row0', 'row2')->getRow('row2');
         $res3_ = $grid->getRow(0);
         
-        $result = ( $res1 == $res2 && $res2 == $res3 && $res3 == $res3_ && $res3_ == $res2_ && $res2_ == $res1_ );
+        $result = ($res1 == $res2 && $res2 == $res3 && $res3 == $res3_ && $res3_ == $res2_ && $res2_ == $res1_);
         $this->assertTrue($result);
         $this->assertTrue($this->isValid($grid));
     }
@@ -451,12 +454,12 @@ class Smrtr_Test_DataGridTest extends Smrtr_DataGrid_ControllerTestCase
         
         $res1 = $grid->getColumn('col0');
         $res1_ = $grid->getColumn(0);
-        $res2 = $grid->swapColumns('col0','col1', false)->getColumn('col1');
+        $res2 = $grid->swapColumns('col0', 'col1', false)->getColumn('col1');
         $res2_ = $grid->getColumn(1);
-        $res3 = $grid->swapColumns('col2','col1', false)->getColumn('col2');
+        $res3 = $grid->swapColumns('col2', 'col1', false)->getColumn('col2');
         $res3_ = $grid->getColumn(2);
         
-        $result = ( $res1 == $res2 && $res2 == $res3 && $res3 == $res3_ && $res3_ == $res2_ && $res2_ == $res1_ );
+        $result = ($res1 == $res2 && $res2 == $res3 && $res3 == $res3_ && $res3_ == $res2_ && $res2_ == $res1_);
         $this->assertTrue($result);
         $this->assertTrue($this->isValid($grid));
     }
@@ -467,12 +470,12 @@ class Smrtr_Test_DataGridTest extends Smrtr_DataGrid_ControllerTestCase
         
         $res1 = $grid->getColumn('col0');
         $res1_ = $grid->getColumn(0);
-        $res2 = $grid->swapColumns('col0','col1')->getColumn('col0');
+        $res2 = $grid->swapColumns('col0', 'col1')->getColumn('col0');
         $res2_ = $grid->getColumn(1);
-        $res3 = $grid->swapColumns('col2','col0')->getColumn('col0');
+        $res3 = $grid->swapColumns('col2', 'col0')->getColumn('col0');
         $res3_ = $grid->getColumn(2);
         
-        $result = ( $res1 == $res2 && $res2 == $res3 && $res3 == $res3_ && $res3_ == $res2_ && $res2_ == $res1_ );
+        $result = ($res1 == $res2 && $res2 == $res3 && $res3 == $res3_ && $res3_ == $res2_ && $res2_ == $res1_);
         $this->assertTrue($result);
         $this->assertTrue($this->isValid($grid));
     }
@@ -485,7 +488,7 @@ class Smrtr_Test_DataGridTest extends Smrtr_DataGrid_ControllerTestCase
         $grid1->moveRow('row0', 'row2');
         $this->assertTrue($this->isValid($grid1));
         $cond = (
-            $grid1->getRow(2) == $grid2->getRow(0) && 
+            $grid1->getRow(2) == $grid2->getRow(0) &&
             $grid1->getRow('row0') == $grid2->getRow('row0') &&
             $grid2->getRow('row0') == $grid2->getRow(0)
         );
@@ -495,9 +498,9 @@ class Smrtr_Test_DataGridTest extends Smrtr_DataGrid_ControllerTestCase
         $grid1->moveRow('row2', 'row0');
         $this->assertTrue($this->isValid($grid1));
         $cond = (
-            $grid1->getRow(0) == $grid2->getRow(2) && 
-            $grid1->getRow(1) == $grid2->getRow(0) && 
-            $grid1->getRow(2) == $grid2->getRow(1) && 
+            $grid1->getRow(0) == $grid2->getRow(2) &&
+            $grid1->getRow(1) == $grid2->getRow(0) &&
+            $grid1->getRow(2) == $grid2->getRow(1) &&
             $grid1->getRow('row0') == $grid2->getRow('row0') &&
             $grid2->getRow('row0') == $grid2->getRow(0)
         );
@@ -512,7 +515,7 @@ class Smrtr_Test_DataGridTest extends Smrtr_DataGrid_ControllerTestCase
         $grid1->moveRow('row0', 'row2', false);
         $this->assertTrue($this->isValid($grid1));
         $cond = (
-            $grid1->getRow(2) == $grid2->getRow(0) && 
+            $grid1->getRow(2) == $grid2->getRow(0) &&
             $grid1->getRow('row2') == $grid2->getRow('row0') &&
             $grid2->getRow('row0') == $grid2->getRow(0)
         );
@@ -527,7 +530,7 @@ class Smrtr_Test_DataGridTest extends Smrtr_DataGrid_ControllerTestCase
         $grid1->moveColumn('col2', 'col0');
         $this->assertTrue($this->isValid($grid1));
         $cond = (
-            $grid1->getColumn(0) == $grid2->getColumn(2) && 
+            $grid1->getColumn(0) == $grid2->getColumn(2) &&
             $grid1->getColumn('col2') == $grid2->getColumn('col2') &&
             $grid2->getColumn('col2') == $grid2->getColumn(2)
         );
@@ -542,7 +545,7 @@ class Smrtr_Test_DataGridTest extends Smrtr_DataGrid_ControllerTestCase
         $grid1->moveColumn('col2', 'col0', false);
         $this->assertTrue($this->isValid($grid1));
         $cond = (
-            $grid1->getColumn(0) == $grid2->getColumn(2) && 
+            $grid1->getColumn(0) == $grid2->getColumn(2) &&
             $grid1->getColumn('col0') == $grid2->getColumn('col2') &&
             $grid2->getColumn('col2') == $grid2->getColumn(2)
         );
@@ -552,7 +555,7 @@ class Smrtr_Test_DataGridTest extends Smrtr_DataGrid_ControllerTestCase
         $grid1->moveColumn('col0', 'col2', false);
         $this->assertTrue($this->isValid($grid1));
         $cond = (
-            $grid1->getColumn(2) == $grid2->getColumn(0) && 
+            $grid1->getColumn(2) == $grid2->getColumn(0) &&
             $grid1->getColumn('col2') == $grid2->getColumn('col0') &&
             $grid2->getColumn('col2') == $grid2->getColumn(2)
         );
@@ -565,10 +568,10 @@ class Smrtr_Test_DataGridTest extends Smrtr_DataGrid_ControllerTestCase
         $g2 = new Smrtr\DataGrid($this->simpleData);
         $g2->transpose();
         $self = $this;
-        $g1->eachRow(function($key, $label, $data) use($g2, $self){
+        $g1->eachRow(function ($key, $label, $data) use ($g2, $self) {
             $cond = $g2->getColumn($key) == $data;
             $self->assertTrue($cond);
-        })->eachColumn(function($key, $label, $data) use($g2, $self){
+        })->eachColumn(function ($key, $label, $data) use ($g2, $self) {
             $cond = $g2->getRow($key) == $data;
             $self->assertTrue($cond);
         });
@@ -578,12 +581,12 @@ class Smrtr_Test_DataGridTest extends Smrtr_DataGrid_ControllerTestCase
     public function testRenameVectors()
     {
         $grid = new Smrtr\DataGrid($this->labelledData, true, true);
-        for($i=0; $i<3; $i++)
+        for ($i=0; $i<3; $i++) {
             $grid->renameRow('row'.$i, 'across'.$i)->renameColumn('col'.$i, 'down'.$i);
-        for ($i=2; $i>=0; $i--)
-        {
-            $cond1 = $grid->getLabel('row',$i) == 'across'.$i;
-            $cond2 = $grid->getLabel('column',$i) == 'down'.$i;
+        }
+        for ($i=2; $i>=0; $i--) {
+            $cond1 = $grid->getLabel('row', $i) == 'across'.$i;
+            $cond2 = $grid->getLabel('column', $i) == 'down'.$i;
             $this->assertTrue($cond1 && $cond2);
         }
         $this->assertTrue($this->isValid($grid));
@@ -667,36 +670,36 @@ class Smrtr_Test_DataGridTest extends Smrtr_DataGrid_ControllerTestCase
         $row4 = ($Grid->getRowCounts(4) === array(5=>1, 1=>2, ''=>2));
         $this->assertTrue($row0 && $row1 && $row2 && $row3 && $row4);
         // verbose getColumnCounts
-        $col0 = ($Grid->getColumnCounts(0, true) === array( 
+        $col0 = ($Grid->getColumnCounts(0, true) === array(
             array(1, 1), array(5, 2), array(4, 1), array(2, 1), array(5, 2)
         ));
-        $col1 = ($Grid->getColumnCounts(1, true) === array( 
+        $col1 = ($Grid->getColumnCounts(1, true) === array(
             array(2, 1), array(4, 2), array(4, 2), array(1, 2), array(1, 2)
         ));
-        $col2 = ($Grid->getColumnCounts(2, true) === array( 
+        $col2 = ($Grid->getColumnCounts(2, true) === array(
             array(3, 3), array(3, 3), array(3, 3), array(5, 1), array(1, 1)
         ));
-        $col3 = ($Grid->getColumnCounts(3, true) === array( 
+        $col3 = ($Grid->getColumnCounts(3, true) === array(
             array(4, 1), array(2, 2), array(2, 2), array(3, 1), array('', 1)
         ));
-        $col4 = ($Grid->getColumnCounts(4, true) === array( 
+        $col4 = ($Grid->getColumnCounts(4, true) === array(
             array(5, 1), array(1, 1), array('', 2), array(2, 1), array('', 2)
         ));
         $this->assertTrue($col0 &&$col1 && $col2 && $col3 && $col4);
         // verbose getRowCounts
-        $row0 = ($Grid->getRowCounts(0, true) === array( 
+        $row0 = ($Grid->getRowCounts(0, true) === array(
             array(1, 1), array(2, 1), array(3, 1), array(4, 1), array(5, 1)
         ));
-        $row1 = ($Grid->getRowCounts(1, true) === array( 
+        $row1 = ($Grid->getRowCounts(1, true) === array(
             array(5, 1), array(4, 1), array(3, 1), array(2, 1), array(1, 1)
         ));
-        $row2 = ($Grid->getRowCounts(2, true) === array( 
+        $row2 = ($Grid->getRowCounts(2, true) === array(
             array(4, 2), array(4, 2), array(3, 1), array(2, 1), array('', 1)
         ));
-        $row3 = ($Grid->getRowCounts(3, true) === array( 
+        $row3 = ($Grid->getRowCounts(3, true) === array(
             array(2, 2), array(1, 1), array(5, 1), array(3, 1), array(2, 2)
         ));
-        $row4 = ($Grid->getRowCounts(4, true) === array( 
+        $row4 = ($Grid->getRowCounts(4, true) === array(
             array(5, 1), array(1, 2), array(1, 2), array('', 2), array('', 2)
         ));
         $this->assertTrue($row0 && $row1 && $row2 && $row3 && $row4);
@@ -712,8 +715,11 @@ class Smrtr_Test_DataGridTest extends Smrtr_DataGrid_ControllerTestCase
         $this->assertFalse($grid->rowHasValue(3, 4));
         $this->assertTrue($grid->columnHasValue(null, 4));
         $this->assertFalse($grid->columnHasValue(1, 3));
-        try { $grid->hasValue('value', 'fooBar'); }
-        catch (Exception $e) { $this->assertInstanceOf('Smrtr\DataGridException', $e); }
+        try {
+            $grid->hasValue('value', 'fooBar');
+        } catch (Exception $e) {
+            $this->assertInstanceOf('Smrtr\DataGridException', $e);
+        }
     }
     
     public function testSerializable()

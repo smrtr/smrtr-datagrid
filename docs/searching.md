@@ -109,8 +109,6 @@ If the value already contains backslashes, they should also be escaped with an e
     print_r($grid->searchRows('"||"|"|||\""=8')->getArray());
     // [ [ 1, 2, 8 ], [ 4, 8, 32 ] ]
 
-</section><section id="operators" markdown="1">
-
 #### Operators
 
  - `=`: Checks for equality and matches if equal to provided value.
