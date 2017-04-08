@@ -1,4 +1,7 @@
 ## Searching
+
+[Previous: Iterating & Filtering](iterating-filtering.md)
+
 Inspired by jQuery, the search methods provided by Smrtr DataGrid comprise a prime featureset which take this class from
 just being a 2D array wrapper to being a manageable, query-able data store.
 

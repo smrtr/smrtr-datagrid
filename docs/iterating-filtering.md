@@ -1,4 +1,7 @@
 ## Iterating & Filtering
+
+[Previous: Vectors](vectors.md)
+
 Smrtr DataGrid comes with some methods to help you iterate over the grid and also perform filtering.
 These methods are essentially helpers that use callbacks, making it very easy to act on the grid data.
 
@@ -171,3 +174,5 @@ Set `$returnVectorObject` to true to pass `$column` as a `\Smrtr\DataGridVector`
     }, true);
     print_r($result->getArray());
     // [ [ "john", "john" ], [ "wayne", "barnes" ] ]
+
+[Next: Searching](searching.md)

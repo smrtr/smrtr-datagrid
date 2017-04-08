@@ -1,4 +1,7 @@
 ## Data setters
+
+[Previous: Data Getters](data-getters.md)
+
 These methods allow you to amend the data stored in the datagrid object. This data can be easily retrieved later. 
 
  > *Only scalar typed values may be assigned to a datagrid by default.*
@@ -67,4 +70,6 @@ The keys for the rest of the datagrid are automatically adjusted.
 #### loadArray( `$data` )
 Imports a 2D array `$data` into the grid. Clears all previously loaded data.
 
-> **See also:</strong> loadCSV(), loadJSON(), readCSV(), readJSON()**
+> See also: **loadCSV(), loadJSON(), readCSV(), readJSON()**
+
+[Next: Vectors](vectors.md)

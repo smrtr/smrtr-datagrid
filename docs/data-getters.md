@@ -1,4 +1,7 @@
 ## Data getters
+
+[Previous: Keys & Labels](keys-labels.md)
+
 These methods return a set of data from the grid.
 
 ### Getting an individual data point
@@ -140,3 +143,5 @@ Returns a 2D array of all grid data, indexed by labels (where available). Each s
      * "row1" => [ "a"=>"foo", "b"=>"bar", 2=>"baz" ],
      * "row2" => [ "a"=>"first", "b"=>"second", 2=>null ]
      */
+
+[Next: Data Setters](data-setters.md)

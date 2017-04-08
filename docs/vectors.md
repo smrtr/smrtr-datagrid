@@ -1,4 +1,7 @@
 ## Vectors
+
+[Previous: Data Setters](data-setters.md)
+
 Smrtr DataGrid comes packaged with a second class, `\Smrtr\DataGridVector`,
 which provides proxies to specific rows or columns on `\Smrtr\DataGrid` objects.
 
@@ -165,8 +168,6 @@ where the array access can be chained directly onto the method that invokes the 
     print_r($grid->getValue('row0', 'col0');
     // NULL
 
-</section><section id="iteration" markdown="1">
-
 ### Iteration over a vector object
 `\Smrtr\DataGridVector` objects also implement the Iterator interface,
 meaning that they can be looped over with foreach statements.
@@ -181,3 +182,5 @@ meaning that they can be looped over with foreach statements.
     }
     echo $result;
     // "0, 1, 2, 9.3"
+
+[Next: Iterating & Filtering](iterating-filtering.md)

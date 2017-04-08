@@ -81,4 +81,4 @@ echo ($grid->getRowKeys() === $inverse->getColumnKeys()) ? 'Y' : 'N'; // "Y"
 `composer update`
 
 ## Tutorial
-[Click here](http://datagrid.smrtr.co.uk/tutorial/getting-started).
+[Click here](https://smrtr.github.io/smrtr-datagrid/getting-started.html).

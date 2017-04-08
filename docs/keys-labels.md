@@ -1,4 +1,7 @@
 ## Keys and Labels
+
+[Previous: Getting Started](getting-started.md)
+
 A table full of numbers can mean nothing. But with its column & row headers a table can be understood. 
 Smrtr DataGrid has a fluent interface for handling the identity of rows and columns through the use of Keys & Labels.
 
@@ -55,3 +58,5 @@ Shorthand: `$Grid->hasRowKey(7)` & `$Grid->hasColumnKey(35)`.
 Returns a boolean. 
 
 Shorthand: `$Grid->hasRowLabel('one')` & `$Grid->hasColumnLabel('64')`.
+
+[Next: Data Getters](data-getters.md)

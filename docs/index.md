@@ -36,3 +36,5 @@ These results are useful for creating page trees, side navs, and even a rudiment
 
 Smrtr DataGrid provides a really intuitive API to allow RapidFrames to build questions that can be answered by
 Smrtr DataGrid in a rapid way!
+
+[Next: Getting Started](getting-started.md)
