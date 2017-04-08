@@ -870,7 +870,7 @@ class Smrtr_Test_DataGridTest extends Smrtr_DataGrid_ControllerTestCase
         $grid->setValue(1, 1, "foobarbodiddly");
         $this->assertSame("foobarbodiddly", $grid->getValue(1, 1));
         // try to set non-scalar, it gets cast to null
-        $grid->setValue(1, 1, ['hey']);
+        $grid->setValue(1, 1, array('hey'));
         $this->assertSame(null, $grid->getValue(1, 1));
     }
 
@@ -881,7 +881,7 @@ class Smrtr_Test_DataGridTest extends Smrtr_DataGrid_ControllerTestCase
         $this->assertSame("foobarbodiddly", $grid->getValue(1, 1));
         // try to set non-scalar, it works this time
         $grid->scalarValuesOnly(false);
-        $grid->setValue(1, 1, ['hey']);
-        $this->assertSame(['hey'], $grid->getValue(1, 1));
+        $grid->setValue(1, 1, array('hey'));
+        $this->assertSame(array('hey'), $grid->getValue(1, 1));
     }
 }

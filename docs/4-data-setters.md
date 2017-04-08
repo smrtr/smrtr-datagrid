@@ -1,7 +1,10 @@
 ## Data setters
 These methods allow you to amend the data stored in the datagrid object. This data can be easily retrieved later. 
 
- > *Only scalar typed values may be assigned to a datagrid. Non-scalars will be replaced with null values.*
+ > *Only scalar typed values may be assigned to a datagrid by default.*
+ >
+ > To enable non-scalar values like objects and arrays to be set onto the grid, first call 
+ > `$grid->scalarValuesOnly(false)` to enable non-scalar values.
 
 ### Setting an individual data point
 

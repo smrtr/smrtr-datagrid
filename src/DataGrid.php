@@ -56,7 +56,7 @@ class DataGrid implements \Serializable
     protected $rowKeys = array();
     
     /**
-     * A 2-Dimensional array of scalar data
+     * A 2-Dimensional array of data
      * @var array 
      */
     protected $data = array();
@@ -2333,7 +2333,7 @@ class DataGrid implements \Serializable
      * @api
      * @param int|string $rowKeyOrLabel
      * @param int|string $columnKeyOrLabel
-     * @return scalar|null
+     * @return mixed|null
      * @uses DataGrid::getKey()
      */
     public function getValue( $rowKeyOrLabel, $columnKeyOrLabel )
