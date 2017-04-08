@@ -4,10 +4,10 @@ A tool for working with 2d arrays, spreadsheets and data grids in PHP.
 
  - CSVs
  - JSON
- - Search
+ - [Search](https://smrtr.github.io/smrtr-datagrid/searching.html)
  - Transformations
  - Fluent API
- - Iteration & Filtering
+ - [Iteration & Filtering](https://smrtr.github.io/smrtr-datagrid/searching.html)
 
 ## Examples
 
