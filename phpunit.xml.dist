@@ -1,0 +1,23 @@
+<phpunit bootstrap="./tests/bootstrap.php" colors="true">
+
+    <testsuites>
+        <testsuite name="smrtr-datagrid">
+            <directory suffix="Test.php" phpVersion="5.3" phpVersionOperator=">=">./tests/5.3</directory>
+        </testsuite>
+        <testsuite name="smrtr-datagrid-5.4">
+            <directory suffix="Test_54.php" phpVersion="5.4" phpVersionOperator=">=">./tests/5.4</directory>
+        </testsuite>
+    </testsuites>
+
+    <filter>
+        <whitelist>
+            <directory suffix=".php">./src</directory>
+        </whitelist>
+    </filter>
+
+    <logging>
+        <log type="coverage-html" target="./build/coverage" charset="UTF-8"
+             yui="true" highlight="true" lowUpperBound="50" highUpperBound="80" />
+    </logging>
+
+</phpunit>

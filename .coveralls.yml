@@ -1,3 +1,0 @@
-# for php-coveralls
-src_dir: .
-coverage_clover: tests/build/logs/clover.xml

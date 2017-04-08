@@ -1,14 +1,4 @@
 composer.lock
-tags
-/docs
-/docs/*
-/docs/**
-/tests/output
-/tests/output/*
-/tests/output/**
 /vendor
-/vendor/*
-/vendor/**
 /.idea
-/.idea/*
-/.idea/**
+/build

@@ -1,13 +1,13 @@
-# Smrtr DataGrid [![Build Status](https://travis-ci.org/joegreen88/smrtr-datagrid.png?branch=master)](https://travis-ci.org/joegreen88/smrtr-datagrid) [ ![Codeship Status for joegreen88/smrtr-datagrid](https://www.codeship.io/projects/fb908060-a44b-0130-ffc3-1e80e73e8cde/status?branch=master)](https://www.codeship.io/projects/3644) [![Coverage Status](https://coveralls.io/repos/joegreen88/smrtr-datagrid/badge.png?branch=master)](https://coveralls.io/r/joegreen88/smrtr-datagrid?branch=master)
+# Smrtr DataGrid [![Build Status](https://travis-ci.org/smrtr/smrtr-datagrid.png?branch=master)](https://travis-ci.org/smrtr/smrtr-datagrid)
 
 A tool for working with 2d arrays, spreadsheets and data grids in PHP.
 
  - CSVs
  - JSON
- - [Search](http://datagrid.smrtr.co.uk/tutorial/searching)
+ - Search
  - Transformations
  - Fluent API
- - [Iteration & Filtering](http://datagrid.smrtr.co.uk/tutorial/iterating--filtering)
+ - Iteration & Filtering
 
 ## Examples
 

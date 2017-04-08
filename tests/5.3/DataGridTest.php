@@ -4,7 +4,6 @@
  * DataGridTest
  * These tests apply to all PHP environments from 5.3 up.
  */
-require_once(TESTS_PATH.'/../DataGrid.php');
 
 class Smrtr_Test_DataGridTest extends Smrtr_DataGrid_ControllerTestCase
 {
